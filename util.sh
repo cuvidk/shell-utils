@@ -57,7 +57,11 @@ perform_task_arg() {
 }
 
 check_for_errors() {
-    [ ${g_err_flag} -eq 1 ] &&
-        print_msg "[ WARNING ]: ${0} finished with errors. See ${OUT_REDIRECTED} for details.\n" ||
+    if [ ${g_err_flag} -eq 1 ]; then
+        print_msg "[ WARNING ]: ${0} finished with errors. See ${OUT_REDIRECTED} for details.\n"
+        return 1
+    else
         print_msg "[ SUCCESS ]: ${0} finished with success."
+        return 0
+    fi
 }
