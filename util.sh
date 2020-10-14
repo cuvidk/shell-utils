@@ -5,7 +5,7 @@ g_err_flag=0
 setup_output() {
     WORKING_DIR="$(realpath "$(dirname "${0}")")"
     OUT_REDIRECTED="$(realpath "${0}").log"
-    [ -e /proc/$$/fd/1 ] && OUT="$(realpath /proc/$$/fd/1)"
+    [ -e /proc/$$/fd/1 ] && export OUT="$(realpath /proc/$$/fd/1)"
     exec 1>"${OUT_REDIRECTED}" 2>&1
 }
 
