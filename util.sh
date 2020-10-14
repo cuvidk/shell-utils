@@ -63,7 +63,7 @@ check_for_errors() {
         print_msg "[ WARNING ]: ${0} finished with errors. See ${OUT_REDIRECTED} for details.\n"
         return 1
     else
-        print_msg "[ SUCCESS ]: ${0} finished with success."
+        print_msg "[ SUCCESS ]: ${0} finished with success.\n"
         return 0
     fi
 }
