@@ -24,11 +24,11 @@ perform_task() {
     local message=$2
     [ -n "${message}" ] && print_msg "${message}\r"
     echo "#################################################"
-    echo "                   ${message}                    "
+    echo "${message}"
     echo "#################################################"
     ${task}
-    echo "#################################################"
     local ret=$?
+    echo "#################################################"
     if [ ${ret} -eq 0 ]; then
         [ -n "${message}" ] && print_msg "[ OK ] ${message}\n"
     else
@@ -44,11 +44,11 @@ perform_task_arg() {
     local message=$3
     [ -n "${message}" ] && print_msg "${message}\r"
     echo "#################################################"
-    echo "                   ${message}                    "
+    echo "${message}"
     echo "#################################################"
     ${task} ${arg}
-    echo "#################################################"
     local ret=$?
+    echo "#################################################"
     if [ ${ret} -eq 0 ]; then
         [ -n "${message}" ] && print_msg "[ OK ] ${message}\n"
     else
