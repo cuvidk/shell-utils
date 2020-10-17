@@ -58,12 +58,14 @@ perform_task_arg() {
     return ${ret}
 }
 
+log_file_name() {
+    echo "${OUT_REDIRECTED}"
+}
+
 check_for_errors() {
     if [ ${g_err_flag} -eq 1 ]; then
-        print_msg "[ WARNING ]: ${0} finished with errors. See ${OUT_REDIRECTED} for details.\n"
         return 1
     else
-        print_msg "[ SUCCESS ]: ${0} finished with success.\n"
         return 0
     fi
 }
