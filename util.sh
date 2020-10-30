@@ -2,6 +2,22 @@
 
 g_err_flag=0
 
+setup_verbosity() {
+    VERBOSE=
+    while [ ${#} -gt 0 ]; do
+        case "${1}" in
+            '--verbose'|'-v')
+                VERBOSE='--verbose'
+                break
+                ;;
+            *)
+                shift
+                ;;
+        esac
+    done
+    [ -z ${VERBOSE} ] && setup_output
+}
+
 setup_output() {
     WORKING_DIR="$(realpath "$(dirname "${0}")")"
     if [ -z "${OUT}" ]; then
@@ -13,9 +29,9 @@ setup_output() {
 
 print_msg() {
     if [ -n "${OUT}" ]; then
-        echo -n -e "$1">>${OUT}
+        echo -n -e "${@}">>${OUT}
     else
-        echo -n -e "$1"
+        echo -n -e "${@}"
     fi
 }
 
@@ -28,7 +44,6 @@ perform_task() {
     echo "#################################################"
     ${task}
     local ret=$?
-    echo "#################################################"
     if [ ${ret} -eq 0 ]; then
         [ -n "${message}" ] && print_msg "[ OK ] ${message}\n"
     else
@@ -48,7 +63,6 @@ perform_task_arg() {
     echo "#################################################"
     ${task} ${arg}
     local ret=$?
-    echo "#################################################"
     if [ ${ret} -eq 0 ]; then
         [ -n "${message}" ] && print_msg "[ OK ] ${message}\n"
     else
