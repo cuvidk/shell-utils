@@ -38,10 +38,7 @@ print_msg() {
 perform_task() {
     local task=$1
     local message=$2
-    [ -n "${message}" ] && print_msg "${message}\r"
-    echo "#################################################"
-    echo "${message}"
-    echo "#################################################"
+    [ -n "${message}" ] && print_msg "[ . ] ${message}\r"
     ${task}
     local ret=$?
     if [ ${ret} -eq 0 ]; then
@@ -57,10 +54,7 @@ perform_task_arg() {
     local task=$1
     local arg=$2
     local message=$3
-    [ -n "${message}" ] && print_msg "${message}\r"
-    echo "#################################################"
-    echo "${message}"
-    echo "#################################################"
+    [ -n "${message}" ] && print_msg "[ . ] ${message}\r"
     ${task} ${arg}
     local ret=$?
     if [ ${ret} -eq 0 ]; then
