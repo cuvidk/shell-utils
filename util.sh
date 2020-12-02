@@ -2,6 +2,10 @@
 
 g_err_flag=0
 
+RED="\033[1;31m"
+GREEN="\033[1;32m"
+NOCOLOR="\033[0m"
+
 setup_verbosity() {
     VERBOSE=
     while [ ${#} -gt 0 ]; do
@@ -42,9 +46,9 @@ perform_task() {
     ${task}
     local ret=$?
     if [ ${ret} -eq 0 ]; then
-        [ -n "${message}" ] && print_msg "[ OK ] ${message}\n"
+        [ -n "${message}" ] && print_msg "[ ${GREEN}OK${NOCOLOR} ] ${message}\n"
     else
-        [ -n "${message}" ] && print_msg "[ FAIL ] ${message}\n"
+        [ -n "${message}" ] && print_msg "[ ${RED}FAIL${NOCOLOR} ] ${message}\n"
         g_err_flag=1
     fi
     return ${ret}
@@ -58,9 +62,9 @@ perform_task_arg() {
     ${task} ${arg}
     local ret=$?
     if [ ${ret} -eq 0 ]; then
-        [ -n "${message}" ] && print_msg "[ OK ] ${message}\n"
+        [ -n "${message}" ] && print_msg "[ ${GREEN}OK${NOCOLOR} ] ${message}\n"
     else
-        [ -n "${message}" ] && print_msg "[ FAIL ] ${message}\n"
+        [ -n "${message}" ] && print_msg "[ ${RED}FAIL${NOCOLOR} ] ${message}\n"
         g_err_flag=1
     fi
     return ${ret}
